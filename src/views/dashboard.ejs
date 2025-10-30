@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superheroes</title>
+</head>
+<body>
+    <% superheroes.forEach(superheroe => { %>
+        <div>
+            <ul>
+                <li>Nombre: <%= superheroe.Nombre %></li>
+                <li>Nombre real: <%= superheroe["Nombre Real"] %></li>
+                <li>Edad: <%= superheroe.Edad %></li>
+                <li>Planeta de Origen: <%= superheroe["Planeta de Origen"] %></li>
+                <li>Debilidad: <%= superheroe.Debilidad %></li>
+                <li>Aliados: <%= superheroe.Aliados %></li>
+                <li>Enemigos: <%= superheroe.Enemigos %></li>
+            </ul>  
+        </div>
+        
+    <% }); %>
+</body>
+</html>
