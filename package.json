@@ -1,0 +1,24 @@
+{
+  "name": "repo3sprint3mod3",
+  "version": "1.0.0",
+  "description": "repositorio 3 del sprint 3 del modulo 3",
+  "main": "app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VicRamD/repo3_sprint3_modulo3.git"
+  },
+  "author": "Victor Francisco Ramirez Diaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VicRamD/repo3_sprint3_modulo3/issues"
+  },
+  "homepage": "https://github.com/VicRamD/repo3_sprint3_modulo3#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-validator": "^7.3.0",
+    "mongoose": "^8.19.2"
+  }
+}
