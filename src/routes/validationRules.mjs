@@ -11,7 +11,7 @@ export const superHeroeValidator = [body('nombreSuperHeroe').notEmpty().isString
         //console.log(typeof value);
         return parseInt(value) >= 0;
     })
-    .withMessage('La edad no puede ser negativa').escape(),
+    .withMessage('La edad debe ser un número no negativo').escape(),
     body('poderes').exists({checkFalsy: true}).isArray({min: 1}) //verifica que sea un array de por lo menos un elemento
     .withMessage('Debe haber por lo menos un poder').escape(),
     //elementos del array poderes

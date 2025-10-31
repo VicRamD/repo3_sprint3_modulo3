@@ -3,7 +3,7 @@ import express from 'express';
 import {obtenerSuperheroePorIdController, obtenerTodosLosSuperheroesController,
     buscarSuperheroesPorAtributoController, obtenerSuperheroesMayoresDe30Controller,
     crearNuevoSuperHeroeController, actualizarSuperheroeController, eliminarSuperHeroePorIDController,
-    eliminarSuperHeroePorNombreDeHeroeController
+    eliminarSuperHeroePorNombreDeHeroeController, renderizarFormCrearNuevoSuperHeroeController
 } from '../controllers/superheroesController.mjs';
 
 import {superHeroeValidator, eliminarSuperHeroeValidator} from './validationRules.mjs';
@@ -17,8 +17,9 @@ router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
 
 //crear un nuevo heroe
-//si se recibe una petición post para la ruta heroes se ejecuta la siguiente línea
-router.post('/heroes', superHeroeValidator, crearNuevoSuperHeroeController);
+router.get('/heroes/agregar', renderizarFormCrearNuevoSuperHeroeController);
+//si se recibe una petición post para la ruta heroes/agregar se ejecuta la siguiente línea
+router.post('/heroes/agregar', superHeroeValidator, crearNuevoSuperHeroeController);
 
 //Eliminar por nombre, manda por el body el nombreSuperHeroe
 router.delete('/heroes', eliminarSuperHeroeValidator, eliminarSuperHeroePorNombreDeHeroeController);

@@ -86,11 +86,19 @@ export const obtenerSuperheroesMayoresDe30Controller = async (req, res) => {
     }
 }
 
+export const renderizarFormCrearNuevoSuperHeroeController = (req, res) => {
+    console.log("En renderizarFormCrearNuevoSuperHeroeController");
+    res.render('addSuperhero');
+}
+
 export const crearNuevoSuperHeroeController = async (req, res) =>{
     try {
+        console.log("en crearNuevoSuperHeroeController");
+        //console.log("body", req.body);
+        //console.log("poderes", req.body.poderes, typeof req.body.poderes);
         const errors = validationResult(req);
         //console.log('edad', typeof req.body.edad);
-        //console.log(errors);
+        console.log("errors", errors);
         if (!errors.isEmpty()) {
             //return res.send(`Hello, ${req.query.person}!`);
             return res.status(400).json({
@@ -104,8 +112,20 @@ export const crearNuevoSuperHeroeController = async (req, res) =>{
             });
         }
 
-        console.log(req.body);
-        const datosSuperHeroe = req.body;
+        console.log("body", req.body);
+        const datos = req.body;
+        console.log(datos);
+        const datosSuperHeroe = {
+            nombreSuperHeroe: datos.nombreSuperHeroe,
+            nombreReal: datos.nombreReal,
+            edad: datos.edad,
+            planetaOrigen: datos.planetaOrigen,
+            debilidad: datos.debilidad,
+            poderes: datos.poderes,
+            aliados: datos.aliados,
+            enemigos: datos.enemigos,
+            creador: datos.creador
+        };
         console.log(datosSuperHeroe);
         const nuevoHeroe = await crearNuevoSuperheroe(datosSuperHeroe);
 

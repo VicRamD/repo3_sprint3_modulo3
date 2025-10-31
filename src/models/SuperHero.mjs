@@ -11,7 +11,7 @@ const superheroSchema = new mongoose.Schema({
     aliados: [String],
     enemigos: [String],
     creador: String,
-    createdAt: {type: String, default: Date.now}
+    createdAt: {type: Date, default: Date.now}
 });
 
 //Modelo superHero                Nombre        esquema        colección
