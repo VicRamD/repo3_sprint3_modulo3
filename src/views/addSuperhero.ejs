@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Superhéroe</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <h1 class="text-5xl text-center">Nuevo Superhéroe</h1>
+    <form action="#" method="post" class="flex flex-col p-2">
+        <label for="nombreSuperHeroe" class="w-full">Nombre/Alias de héroe</label>
+        <input type="text" name="nombreSuperHeroe" id="nombreSuperHeroe" class="w-full bg-sky-500/50" required minlength="3" maxlength="60">
+        <br><br>
+        <label for="nombreReal" class="w-full">Nombre real</label>
+        <input type="text" name="nombreReal" id="nombreReal" class="w-full bg-sky-500/50" required minlength="3" maxlength="60">
+        <br><br>
+        <label for="edad" class="w-full">Edad</label>
+        <input type="number" name="edad" id="edad" class="w-full bg-sky-500/50" required min="0">
+        <br><br>
+        <label for="planetaOrigen" class="w-full">Planeta de origen</label>
+        <input type="text" name="planetaOrigen" id="planetaOrigen" class="w-full bg-sky-500/50">
+        <br><br>
+        <label for="debilidad" class="w-full">Debilidad</label>
+        <input type="text" name="debilidad" id="debilidad" class="w-full bg-sky-500/50">
+        <br><br>
+        <div id="poderesContainer" class="w-full">
+            <label for="poderes" class="w-full">Poderes</label>
+            <input type="text" name="poder" id="idPoder" placeholder="ingrese un poder" class="w-full bg-sky-500/50">
+            <button type="button" id="btnAgregarPoder" class="w-full bg-blue-500">Agregar poder</button>
+        </div>
+        <br><br>
+        <div id="aliadosContainer">
+            <label for="aliados">Aliados</label>
+            <input type="text" name="aliado" id="idAliado" placeholder="ingrese un aliado" class="w-full bg-sky-500/50">
+            <button type="button" id="btnAgregarAliado" class="w-full bg-blue-500">Agregar Aliado</button>
+        </div>
+        <br><br>
+        <div id="enemigosContainer">
+            <label for="enemigos">Enemigos</label>
+            <input type="text" name="enemigo" id="idEnemigo" placeholder="ingrese un enemigo" class="w-full bg-sky-500/50">
+            <button type="button" id="btnAgregarEnemigo" class="w-full bg-blue-500">Agregar Enemigo</button>
+        </div>
+        <br><br>
+        <label for="creador">Creador</label>
+        <input type="text" name="creador" id="creador" class="w-full bg-sky-500/50">
+        <br><br>
+        <input type="submit" value="Enviar datos" class="w-full bg-green-600">
+    </form>
+    <script>
+        //Capturar botones
+        const btnAgregarPoder = document.querySelector("#btnAgregarPoder");
+        console.log(btnAgregarPoder);
+        const btnAgregarAliado = document.querySelector("#btnAgregarAliado");
+        console.log(btnAgregarAliado);
+        const btnAgregarEnemigo = document.querySelector("#btnAgregarEnemigo");
+        console.log(btnAgregarEnemigo);
+
+        //Poderes
+        btnAgregarPoder.addEventListener("click", ()=>{
+            const inputPoder = document.querySelector('#idPoder');
+            console.log(inputPoder);
+            const contenedor = document.querySelector('#poderesContainer');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'poderes[]';
+            input.value = inputPoder.value;
+            //required minlength="3" maxlength="60"
+            input.required = true;
+            input.minLength=3;
+            input.maxLength=60;
+            input.className += "bg-rose-300 w-1/2";
+            //input.readOnly = true;
+            contenedor.appendChild(input);
+            inputPoder.value = '';
+
+            //revisar lista de poderes
+            /*const inputsPoderes = document.querySelectorAll('input[name="poderes[]"]');
+            inputsPoderes.forEach(inputPoder => {
+                console.log(inputPoder.value);
+            }); */
+        });
+
+        //Aliados
+        btnAgregarAliado.addEventListener("click", ()=>{
+            const inputAliado = document.querySelector('#idAliado');
+            console.log(inputAliado);
+            const contenedor = document.querySelector('#aliadosContainer');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'aliados[]';
+            input.value = inputAliado.value;
+            //input.readOnly = true;
+            contenedor.appendChild(input);
+            inputAliado.value = '';
+
+            //revisar lista de aliados
+            /*const inputsAliados = document.querySelectorAll('input[name="poderes[]"]');
+            inputsAliados.forEach(inputAliado => {
+                console.log(inputAliado.value);
+            }); */
+        });
+
+        //Enemigos
+        btnAgregarEnemigo.addEventListener("click", ()=>{
+            const inputEnemigo = document.querySelector('#idEnemigo');
+            console.log(inputEnemigo);
+            const contenedor = document.querySelector('#enemigosContainer');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'enemigos[]';
+            input.value = inputEnemigo.value;
+            //input.readOnly = true;
+            contenedor.appendChild(input);
+            inputEnemigo.value = '';
+
+            //revisar lista de aliados
+            /*const inputsAliados = document.querySelectorAll('input[name="poderes[]"]');
+            inputsAliados.forEach(inputAliado => {
+                console.log(inputAliado.value);
+            }); */
+        });
+    </script>
+</body>
+</html>

@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superheroes</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <h1>Lista de Superhéroes</h1>
+    <h1 class="text-5xl text-center">Lista de Superhéroes</h1>
     <% superheroes.forEach(superheroe => { %>
-        <div>
+        <div class="p-4">
             <ul>
-                <li>Nombre: <%= superheroe.Nombre %></li>
-                <li>Nombre real: <%= superheroe["Nombre Real"] %></li>
-                <li>Edad: <%= superheroe.Edad %></li>
-                <li>Planeta de Origen: <%= superheroe["Planeta de Origen"] %></li>
-                <li>Debilidad: <%= superheroe.Debilidad %></li>
-                <li>Aliados: <%= superheroe.Aliados %></li>
-                <li>Enemigos: <%= superheroe.Enemigos %></li>
+                <li><strong>Nombre:</strong> <%= superheroe.Nombre %></li>
+                <li><strong>Nombre real:</strong> <%= superheroe["Nombre Real"] %></li>
+                <li><strong>Edad:</strong> <%= superheroe.Edad %></li>
+                <li><strong>Planeta de Origen:</strong> <%= superheroe["Planeta de Origen"] %></li>
+                <li><strong>Debilidad:</strong> <%= superheroe.Debilidad %></li>
+                <li><strong>Poderes:</strong> <%= superheroe.Poderes %></li>
+                <li><strong>Aliados:</strong> <%= superheroe.Aliados %></li>
+                <li><strong>Enemigos:</strong> <%= superheroe.Enemigos %></li>
             </ul>  
         </div>
         
