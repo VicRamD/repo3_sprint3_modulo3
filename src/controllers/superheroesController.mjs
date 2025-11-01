@@ -140,6 +140,30 @@ export const crearNuevoSuperHeroeController = async (req, res) =>{
     }
 }
 
+export const renderizarFormEditarSuperHeroeController = async (req, res) => {
+    
+    try {
+        console.log("En renderizarFormEditarSuperHeroeController");
+        const {id} = req.params;
+        //console.log(id);
+        const superheroe = await obtenerSuperheroePorId(id); 
+        console.log(superheroe);
+        if(!superheroe){
+            return res.status(404).send({mensaje: 'Superhéroe no encontrado'});
+        }    
+
+        //const superheroeFormateado = renderizarSuperheroe(superheroe);
+        //res.status(200).json(superheroeFormateado);
+
+        res.render('editSuperhero', {superheroe});
+    } catch (error) {
+        res.status(500).send({
+            mensaje: 'Error al obtener supehéroe',
+            error: error.message
+        });
+    }
+}
+
 export const actualizarSuperheroeController = async (req, res) => {
     try {
         const errors = validationResult(req);

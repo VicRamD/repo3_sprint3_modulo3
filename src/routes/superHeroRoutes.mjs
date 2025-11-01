@@ -3,7 +3,8 @@ import express from 'express';
 import {obtenerSuperheroePorIdController, obtenerTodosLosSuperheroesController,
     buscarSuperheroesPorAtributoController, obtenerSuperheroesMayoresDe30Controller,
     crearNuevoSuperHeroeController, actualizarSuperheroeController, eliminarSuperHeroePorIDController,
-    eliminarSuperHeroePorNombreDeHeroeController, renderizarFormCrearNuevoSuperHeroeController
+    eliminarSuperHeroePorNombreDeHeroeController, renderizarFormCrearNuevoSuperHeroeController, 
+    renderizarFormEditarSuperHeroeController
 } from '../controllers/superheroesController.mjs';
 
 import {superHeroeValidator, eliminarSuperHeroeValidator} from './validationRules.mjs';
@@ -26,7 +27,12 @@ router.delete('/heroes', eliminarSuperHeroeValidator, eliminarSuperHeroePorNombr
 
 //heroes/:id se dejó para el final para evitar que al escribir /mayores-30 lo interprete como un id
 router.get('/heroes/:id', obtenerSuperheroePorIdController);
-router.put('/heroes/:id', superHeroeValidator, actualizarSuperheroeController);
+
+//Modificar heroe existente
+router.get('/heroes/:id/editar', renderizarFormEditarSuperHeroeController);
+//si se recibe una petición post para la ruta heroes/agregar se ejecuta la siguiente línea
+router.put('/heroes/:id/editar', superHeroeValidator, actualizarSuperheroeController);
+
 router.delete('/heroes/:id', eliminarSuperHeroePorIDController);
 //http://localhost:3000/api/heroes/68f28aa5653a5ddc12de3b02
 
