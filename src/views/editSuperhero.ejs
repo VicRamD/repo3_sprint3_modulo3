@@ -88,7 +88,8 @@
             input.required = true;
             input.minLength=3;
             input.maxLength=60;
-            input.className += "bg-rose-300 w-1/2";
+            input.className += "bg-rose-300 w-full";
+
             //input.readOnly = true;
             contenedor.appendChild(input);
             inputPoder.value = '';
@@ -109,6 +110,7 @@
             input.type = 'text';
             input.name = 'aliados[]';
             input.value = inputAliado.value;
+            input.className += "bg-rose-300 w-full";
             //input.readOnly = true;
             contenedor.appendChild(input);
             inputAliado.value = '';
@@ -129,6 +131,7 @@
             input.type = 'text';
             input.name = 'enemigos[]';
             input.value = inputEnemigo.value;
+            input.className += "bg-rose-300 w-full";
             //input.readOnly = true;
             contenedor.appendChild(input);
             inputEnemigo.value = '';

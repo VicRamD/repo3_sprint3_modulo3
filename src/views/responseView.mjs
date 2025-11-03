@@ -1,8 +1,10 @@
 export function renderizarSuperheroe(superheroe){
     //console.log("En renderizarSuperHeroe");
+    //console.log(superheroe);
     //console.log("Poderes", superheroe.poderes);
 
     return {
+        id: superheroe._id,
         Nombre: superheroe.nombreSuperHeroe,
         "Nombre Real": superheroe.nombreReal,
         Edad: superheroe.edad,

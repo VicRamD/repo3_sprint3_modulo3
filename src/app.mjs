@@ -1,5 +1,6 @@
 import express from 'express';
 import {connectDB} from './config/dbConfig.mjs';
+import methodOverride from 'method-override';
 import superHeroRoutes from './routes/superHeroRoutes.mjs';
 
 //para renderizar las vistas
@@ -13,6 +14,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 //Middleware para trabajar con el enctype application/x-www-form-urlencoded por defecto del form
 app.use(express.urlencoded({ extended: true }));
+
+// Sobreescribir peticiones con ej: ?_method=DELETE
+app.use(methodOverride('_method'));
 
 //Conexión a MongoDB
 connectDB();
