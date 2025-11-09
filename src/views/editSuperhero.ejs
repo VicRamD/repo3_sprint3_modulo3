@@ -36,8 +36,12 @@
             <input type="text" name="poder" id="idPoder" placeholder="ingrese un poder" class="w-full bg-sky-500/50">
             <button type="button" id="btnAgregarPoder" class="w-full bg-blue-500">Agregar poder</button>
             <% superheroe.poderes.forEach(poder => { %>
-                <input type="text" name="poderes[]" class="bg-rose-300 w-full" 
-                required minlength="3" maxlength="60" value="<%= poder %>">    
+                <div class="w-full">
+                    <input type="text" name="poderes[]" class="bg-rose-300 w-4/5" 
+                    required minlength="3" maxlength="60" value="<%= poder %>"> 
+                    <button type="button" class="outline-2 outline-red-600 bg-rose-200 w-1/5">Quitar</button>
+                </div>
+                
             <% }); %>
         </div>
         <br><br>
@@ -46,8 +50,12 @@
             <input type="text" name="aliado" id="idAliado" placeholder="ingrese un aliado" class="w-full bg-sky-500/50">
             <button type="button" id="btnAgregarAliado" class="w-full bg-blue-500">Agregar Aliado</button>
             <% superheroe.aliados.forEach(aliado => { %>
-                <input type="text" name="aliados[]" class="bg-rose-300 w-full" 
+                <div class="w-full">
+                    <input type="text" name="aliados[]" class="bg-rose-300 w-4/5" 
                 required minlength="3" maxlength="60" value="<%= aliado %>">    
+                    <button type="button" class="outline-2 outline-red-600 bg-rose-200 w-1/5">Quitar</button>
+                </div>
+                
             <% }); %>
         </div>
         <br><br>
@@ -56,9 +64,14 @@
             <input type="text" name="enemigo" id="idEnemigo" placeholder="ingrese un enemigo" class="w-full bg-sky-500/50">
             <button type="button" id="btnAgregarEnemigo" class="w-full bg-blue-500">Agregar Enemigo</button>
             <% superheroe.enemigos.forEach(enemigo => { %>
-                <input type="text" name="enemigos[]" class="bg-rose-300 w-full" 
-                required minlength="3" maxlength="60" value="<%= enemigo %>">    
+                <div class="w-full">
+                    <input type="text" name="enemigos[]" class="bg-rose-300 w-4/5" 
+                required minlength="3" maxlength="60" value="<%= enemigo %>">
+                    <button type="button" class="outline-2 outline-red-600 bg-rose-200 w-1/5">Quitar</button>
+                </div>
+                    
             <% }); %>
+
         </div>
         <br><br>
         <label for="creador">Creador</label>
@@ -67,7 +80,20 @@
         <input type="submit" value="Enviar datos" class="w-full bg-green-600">
     </form>
     <script>
-        //Capturar botones
+        //dar funcionalidad a los botones quitar que aparecen de base
+        const botonesQuitar = document.querySelectorAll('.outline-red-600');
+        //console.log(botonesQuitar);
+        //console.log(botonesQuitar[1]);
+        botonesQuitar.forEach(btnQuitar => {
+            btnQuitar.addEventListener('click', ()=>{
+                //console.log("BTN quitar: ", btnQuitar);
+                const padre = btnQuitar.parentElement;
+                //console.log(padre);
+                padre.remove();
+            });
+        });
+
+        //Capturar botones para agregar
         const btnAgregarPoder = document.querySelector("#btnAgregarPoder");
         console.log(btnAgregarPoder);
         const btnAgregarAliado = document.querySelector("#btnAgregarAliado");
@@ -75,6 +101,73 @@
         const btnAgregarEnemigo = document.querySelector("#btnAgregarEnemigo");
         console.log(btnAgregarEnemigo);
 
+        const agregarInputVector = (queryIdInputAgregar, queryIdDivContenedor, inputName) => {
+            console.log("en agregarInputVector");
+            //captura de elementos
+            const inputParaAgregar = document.querySelector(queryIdInputAgregar);
+            console.log(inputParaAgregar);
+            const contenedor = document.querySelector(queryIdDivContenedor);
+            console.log(contenedor);
+
+            //crear div contenedor del input y el boton para quitar
+            const div = document.createElement('div');
+            div.className += "w-full";
+            contenedor.appendChild(div);
+            // -------------------
+
+            //crear input del elemento agregado
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = inputName;
+            input.value = inputParaAgregar.value;
+            //required minlength="3" maxlength="60"
+            input.required = true;
+            input.minLength=3;
+            input.maxLength=60;
+            input.className += "bg-rose-300 w-4/5";
+            //input.readOnly = true;
+            //console.log(input);
+            div.appendChild(input);
+            //console.log("div padre:", div);
+            //---------------------
+            inputParaAgregar.value = '';
+
+            //crear botón quitar
+            const btnQuitar = document.createElement('button');
+            //console.log("BTN quitar: ", btnQuitar);
+            btnQuitar.innerText = 'Quitar';
+            btnQuitar.type = 'button';
+            btnQuitar.className += "outline-2 outline-red-600 bg-rose-200 w-1/5";
+            
+            div.appendChild(btnQuitar);
+
+            //función para quitar poder
+            btnQuitar.addEventListener('click', ()=>{
+                //console.log("BTN quitar: ", btnQuitar);
+                const padre = btnQuitar.parentElement;
+                //console.log(padre);
+                padre.remove();
+            });
+            //-------------------
+
+            //revisar lista de inputs
+            /*const vectorInputs = document.querySelectorAll('input[name="inputName"]');
+            vectorInputs.forEach(input => {
+                console.log(input.value);
+            }); */
+        }
+
+        btnAgregarPoder.addEventListener('click', ()=>{
+            agregarInputVector('#idPoder','#poderesContainer','poderes[]');
+        });
+        btnAgregarAliado.addEventListener('click', ()=>{
+            agregarInputVector('#idAliado','#aliadosContainer','aliados[]')
+        });
+        btnAgregarEnemigo.addEventListener('click', ()=>{
+            agregarInputVector('#idEnemigo','#enemigosContainer','enemigos[]');
+        });
+
+        /*
         //Poderes
         btnAgregarPoder.addEventListener("click", ()=>{
             const inputPoder = document.querySelector('#idPoder');
@@ -93,12 +186,6 @@
             //input.readOnly = true;
             contenedor.appendChild(input);
             inputPoder.value = '';
-
-            //revisar lista de poderes
-            /*const inputsPoderes = document.querySelectorAll('input[name="poderes[]"]');
-            inputsPoderes.forEach(inputPoder => {
-                console.log(inputPoder.value);
-            }); */
         });
 
         //Aliados
@@ -115,11 +202,6 @@
             contenedor.appendChild(input);
             inputAliado.value = '';
 
-            //revisar lista de aliados
-            /*const inputsAliados = document.querySelectorAll('input[name="poderes[]"]');
-            inputsAliados.forEach(inputAliado => {
-                console.log(inputAliado.value);
-            }); */
         });
 
         //Enemigos
@@ -135,13 +217,7 @@
             //input.readOnly = true;
             contenedor.appendChild(input);
             inputEnemigo.value = '';
-
-            //revisar lista de aliados
-            /*const inputsAliados = document.querySelectorAll('input[name="poderes[]"]');
-            inputsAliados.forEach(inputAliado => {
-                console.log(inputAliado.value);
-            }); */
-        });
+        }); */
     </script>
 </body>
 </html>
