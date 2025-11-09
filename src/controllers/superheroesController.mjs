@@ -130,7 +130,9 @@ export const crearNuevoSuperHeroeController = async (req, res) =>{
         const nuevoHeroe = await crearNuevoSuperheroe(datosSuperHeroe);
 
         const superheroeFormateado = renderizarSuperheroe(nuevoHeroe);
-        res.status(200).json(superheroeFormateado);
+        //res.status(200).json(superheroeFormateado);
+        //redirecciona al dashboard
+        res.redirect('/api/heroes');
 
     } catch (error) {
         res.status(500).send({
@@ -195,7 +197,9 @@ export const actualizarSuperheroeController = async (req, res) => {
 
         
         const superheroeFormateado = renderizarSuperheroe(heroeActualizado);
-        res.status(200).json(superheroeFormateado);
+        //res.status(200).json(superheroeFormateado);
+        //redirecciona al dashboard
+        res.redirect('/api/heroes');
 
     } catch (error) {
         res.status(500).send({
@@ -208,6 +212,8 @@ export const actualizarSuperheroeController = async (req, res) => {
 export const eliminarSuperHeroePorIDController = async (req, res) => {
     try {
         const {id} = req.params;
+        console.log("En eliminar superhroe por Id controller");
+        //console.log(id);
 
         const heroeEliminado = await eliminarSuperHeroePorID(id);
         console.log("Superheroe Eliminado", heroeEliminado);
@@ -218,7 +224,9 @@ export const eliminarSuperHeroePorIDController = async (req, res) => {
 
         
         const superheroeFormateado = renderizarSuperheroe(heroeEliminado);
-        res.status(200).json(superheroeFormateado);
+        //res.status(200).json(superheroeFormateado);
+        //redirecciona al dashboard
+        res.redirect('/api/heroes');
 
     } catch (error) {
         res.status(500).send({
