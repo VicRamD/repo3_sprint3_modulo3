@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1 class="text-5xl text-center">Editar superhéroe</h1>
-    <form action="#" method="post" class="flex flex-col p-2">
+    <form action="./editar?_method=PUT" method="post" class="flex flex-col p-2">
         <label for="nombreSuperHeroe" class="w-full">Nombre/Alias de héroe</label>
         <input type="text" name="nombreSuperHeroe" id="nombreSuperHeroe" class="w-full bg-sky-500/50" 
         required minlength="3" maxlength="60" value="<%= superheroe.nombreSuperHeroe %>">

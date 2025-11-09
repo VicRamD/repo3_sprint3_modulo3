@@ -56,11 +56,85 @@
         const btnAgregarEnemigo = document.querySelector("#btnAgregarEnemigo");
         console.log(btnAgregarEnemigo);
 
+        const agregarInputVector = (queryIdInputAgregar, queryIdDivContenedor, inputName) => {
+            console.log("en agregarInputVector");
+            //captura de elementos
+            const inputParaAgregar = document.querySelector(queryIdInputAgregar);
+            console.log(inputParaAgregar);
+            const contenedor = document.querySelector(queryIdDivContenedor);
+            console.log(contenedor);
+
+            //crear div contenedor del input y el boton para quitar
+            const div = document.createElement('div');
+            div.className += "w-full";
+            contenedor.appendChild(div);
+            // -------------------
+
+            //crear input del elemento agregado
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = inputName;
+            input.value = inputParaAgregar.value;
+            //required minlength="3" maxlength="60"
+            input.required = true;
+            input.minLength=3;
+            input.maxLength=60;
+            input.className += "bg-rose-300 w-4/5";
+            //input.readOnly = true;
+            //console.log(input);
+            div.appendChild(input);
+            //console.log("div padre:", div);
+            //---------------------
+            inputParaAgregar.value = '';
+
+            //crear botón quitar
+            const btnQuitar = document.createElement('button');
+            //console.log("BTN quitar: ", btnQuitar);
+            btnQuitar.innerText = 'Quitar';
+            btnQuitar.type = 'button';
+            btnQuitar.className += "outline-2 outline-red-600 bg-rose-200 w-1/5";
+            
+            div.appendChild(btnQuitar);
+
+            //función para quitar poder
+            btnQuitar.addEventListener('click', ()=>{
+                //console.log("BTN quitar: ", btnQuitar);
+                const padre = btnQuitar.parentElement;
+                //console.log(padre);
+                padre.remove();
+            });
+            //-------------------
+
+            //revisar lista de poderes
+            /*const inputsPoderes = document.querySelectorAll('input[name="poderes[]"]');
+            inputsPoderes.forEach(inputPoder => {
+                console.log(inputPoder.value);
+            }); */
+        }
+
+        btnAgregarPoder.addEventListener('click', ()=>{
+            agregarInputVector('#idPoder','#poderesContainer','poderes[]');
+        });
+        btnAgregarAliado.addEventListener('click', ()=>{
+            agregarInputVector('#idAliado','#aliadosContainer','aliados[]')
+        });
+        btnAgregarEnemigo.addEventListener('click', ()=>{
+            agregarInputVector('#idEnemigo','#enemigosContainer','enemigos[]');
+        });
+        /*
         //Poderes
         btnAgregarPoder.addEventListener("click", ()=>{
             const inputPoder = document.querySelector('#idPoder');
             console.log(inputPoder);
             const contenedor = document.querySelector('#poderesContainer');
+
+            //crear div contenedor del input y el boton para quitar
+            const divPoder = document.createElement('div');
+            divPoder.className += "w-full";
+            contenedor.appendChild(divPoder);
+            // -------------------
+
+            //crear input del poder
             const input = document.createElement('input');
             input.type = 'text';
             input.name = 'poderes[]';
@@ -69,18 +143,38 @@
             input.required = true;
             input.minLength=3;
             input.maxLength=60;
-            input.className += "bg-rose-300 w-full";
+            input.className += "bg-rose-300 w-4/5";
             //input.readOnly = true;
-            contenedor.appendChild(input);
+            //console.log(input);
+            divPoder.appendChild(input);
+            //---------------------
             inputPoder.value = '';
+
+            //crear botón quitar
+            const btnQuitar = document.createElement('button');
+            console.log("BTN quitar: ", btnQuitar);
+            btnQuitar.innerText = 'Quitar';
+            btnQuitar.type = 'button';
+            btnQuitar.className += "outline-2 outline-red-600 bg-rose-200 w-1/5";
+            
+            divPoder.appendChild(btnQuitar);
+
+            //función para quitar poder
+            btnQuitar.addEventListener('click', ()=>{
+                //console.log("BTN quitar: ", btnQuitar);
+                const padre = btnQuitar.parentElement;
+                //console.log(padre);
+                padre.remove();
+            });
+            //-------------------
 
             //revisar lista de poderes
             /*const inputsPoderes = document.querySelectorAll('input[name="poderes[]"]');
             inputsPoderes.forEach(inputPoder => {
                 console.log(inputPoder.value);
             }); */
-        });
-
+        //});
+        /*
         //Aliados
         btnAgregarAliado.addEventListener("click", ()=>{
             const inputAliado = document.querySelector('#idAliado');
@@ -100,8 +194,9 @@
             inputsAliados.forEach(inputAliado => {
                 console.log(inputAliado.value);
             }); */
-        });
+        //});
 
+        /*
         //Enemigos
         btnAgregarEnemigo.addEventListener("click", ()=>{
             const inputEnemigo = document.querySelector('#idEnemigo');
@@ -121,7 +216,7 @@
             inputsAliados.forEach(inputAliado => {
                 console.log(inputAliado.value);
             }); */
-        });
+        //}); 
     </script>
 </body>
 </html>
