@@ -12,6 +12,10 @@
     </header>
     
     <main class="flex flex-row flex-wrap justify-center w-full lg:justify-between lg:w-5/6">
+        <div class="agregar w-5/6">
+            <a href="/api/heroes/agregar">Agregar Heroe</a>
+        </div>
+        
         <% superheroes.forEach(superheroe => { %>
             <div class="p-4 m-2 w-5/6 outline-2 outline-black rounded-md lg:w-2/5">
                 <ul>
@@ -23,8 +27,8 @@
                     <li><strong>Poderes:</strong> <%= superheroe.Poderes %></li>
                     <li><strong>Aliados:</strong> <%= superheroe.Aliados %></li>
                     <li><strong>Enemigos:</strong> <%= superheroe.Enemigos %></li>
-                    <li class="text-center outline-2 outline-green-400 m-2 hover:bg-green-200"><a href="./<%= superheroe.id %>/editar" class="inline-block w-full">Editar</a></li>
-                    <form method="post" action="./<%= superheroe.id %>?_method=DELETE" class="w-full p-2">
+                    <li class="text-center outline-2 outline-green-400 m-2 hover:bg-green-200"><a href="/api/heroes/<%= superheroe.id %>/editar" class="inline-block w-full">Editar</a></li>
+                    <form method="post" action="/api/heroes/<%= superheroe.id %>?_method=DELETE" class="w-full p-2">
                         <input type="hidden" name="heroeID">
                         <input type="submit" class="w-full text-center outline-2 outline-red-400 hover:bg-red-200 hover:cursor-pointer" value="Eliminar">
                     </form>
