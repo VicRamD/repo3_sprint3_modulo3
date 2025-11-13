@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <h1 class="text-5xl text-center">Editar superhéroe</h1>
+    <%- include('partials/header') %>
     <form action="./editar?_method=PUT" method="post" class="flex flex-col p-2">
         <label for="nombreSuperHeroe" class="w-full">Nombre/Alias de héroe</label>
         <input type="text" name="nombreSuperHeroe" id="nombreSuperHeroe" class="w-full bg-sky-500/50" 

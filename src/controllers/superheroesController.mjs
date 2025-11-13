@@ -34,7 +34,7 @@ export const obtenerTodosLosSuperheroesController = async (req, res) => {
         const superheroesFormateados = renderizarListaSuperheroes(superheroes);
         //res.status(200).json(superheroesFormateados);
 
-        res.render('dashboard', {superheroes: superheroesFormateados})
+        res.render('dashboard', {superheroes: superheroesFormateados, titulo: 'Lista de Superhéroes'});
     } catch (error) {
         res.status(500).send({
             mensaje: 'Error al obtener los superhéroes',
@@ -88,7 +88,7 @@ export const obtenerSuperheroesMayoresDe30Controller = async (req, res) => {
 
 export const renderizarFormCrearNuevoSuperHeroeController = (req, res) => {
     console.log("En renderizarFormCrearNuevoSuperHeroeController");
-    res.render('addSuperhero');
+    res.render('addSuperhero', {titulo: 'Nuevo Superhéroe'});
 }
 
 export const crearNuevoSuperHeroeController = async (req, res) =>{
@@ -157,7 +157,7 @@ export const renderizarFormEditarSuperHeroeController = async (req, res) => {
         //const superheroeFormateado = renderizarSuperheroe(superheroe);
         //res.status(200).json(superheroeFormateado);
 
-        res.render('editSuperhero', {superheroe});
+        res.render('editSuperhero', {superheroe, titulo: 'Editar Superhéroe'});
     } catch (error) {
         res.status(500).send({
             mensaje: 'Error al obtener supehéroe',
