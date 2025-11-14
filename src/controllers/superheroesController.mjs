@@ -9,6 +9,7 @@ import {renderizarSuperheroe, renderizarListaSuperheroes} from '../views/respons
 
 export const obtenerSuperheroePorIdController = async (req, res) => {
     try {
+        console.log("En obtenerSuperheroePorIdController");
         const {id} = req.params;
         //console.log(id);
         const superheroe = await obtenerSuperheroePorId(id); 
